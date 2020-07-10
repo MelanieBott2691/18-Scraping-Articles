@@ -1,4 +1,4 @@
-# 18-Scrapping
+# 18-Scraping-Articles
 
 Heroku link https://scrapping-articles.herokuapp.com/
 GitHub link https://melaniebott2691.github.io/18-Scrapping/
