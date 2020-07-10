@@ -91,8 +91,8 @@ router.get('/clearAll', function (req, res) {
   })
   res.redirect('/articles-json')
 })
-router.get('/readArticles/:id', function (req, rew) {
-  var artclId = req.params.id
+router.get('/readArticle/:id', function (req, res) {
+  var articleId = req.params.id
   var hbsObj = {
     article: [],
     body: []
