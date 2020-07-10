@@ -1,21 +1,21 @@
 {
-  "name": "18-scrapping",
+  "name": "18-scraping-articles",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MelanieBott2691/18-Scrapping.git"
+    "url": "git+https://github.com/MelanieBott2691/18-Scraping-Articles.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MelanieBott2691/18-Scrapping/issues"
+    "url": "https://github.com/MelanieBott2691/18-Scraping-Articles/issues"
   },
-  "homepage": "https://github.com/MelanieBott2691/18-Scrapping#readme",
+  "homepage": "https://github.com/MelanieBott2691/18-Scraping-Articles#readme",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
