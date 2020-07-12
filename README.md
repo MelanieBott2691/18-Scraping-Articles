@@ -22,3 +22,8 @@ Deployment of application to Heroku set with mLab provision.
 - Title
 - Summary
 - URL
+
+
+#### Screenshots
+![](public/assets/img/scraperscreenshot.png)
+![](public/assets/img/scraperscreenshotfooter.png)
