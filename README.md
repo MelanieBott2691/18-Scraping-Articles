@@ -1,7 +1,7 @@
 # 18-Scraping-Articles
 
 Heroku link https://scraping-articles.herokuapp.com/
-GitHub link https://melaniebott2691.github.io/18-Scrapping/
+GitHub linkhttps://melaniebott2691.github.io/18-Scraping-Articles/
 
 Web app that lets users view and leave comments on news articles using Mongoose and Cheerio to scrape news from the news site.
 
