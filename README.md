@@ -26,4 +26,4 @@ Deployment of application to Heroku set with mLab provision.
 
 #### Screenshots
 ![](public/assets/img/scraperscreenshot.png)
-![](public/assets/img/scraperscreenshotfooter.png)
+![](public/assets/img/notes.png)
