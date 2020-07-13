@@ -13,24 +13,13 @@ body {
   main {
     flex: 1 0 auto;
   }
-  /* .articleBody {
-    height: 200px;
-    font-size: 16px;
-    overflow-y: scroll;
-    line-height: 150%;
-  } */
+ 
   #savenote {
     background-color: #702135;
     border-radius: 6px;
     text-shadow: 1px 1px rgb(80, 47, 2);
     color: white;
   }
-  /* #nameComment {
-    /*border-bottom: 2px solid #ec407a;*/
-    /* font-weight: bold;
-    background:  #702135;
-    color: white; */
-  /* } */
   
   .container-header {
     background-color: #daac16;
