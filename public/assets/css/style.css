@@ -83,8 +83,8 @@ body {
   }
   textarea,
   input {
-    /* display: block; */
-    /* width: 100%; */
+    /* display: block;  */
+    width: 100%; 
     background-color: #f1f1ed;
     border-radius: 5px;
   }
