@@ -13,42 +13,47 @@ body {
   main {
     flex: 1 0 auto;
   }
-  .articleBody {
+  /* .articleBody {
     height: 200px;
     font-size: 16px;
     overflow-y: scroll;
     line-height: 150%;
-  }
-  #btnSignUp {
+  } */
+  #savenote {
     background-color: #702135;
     border-radius: 6px;
-    text-shadow: 1px 1px #000;
-  }
-  #nameComment {
-    /*border-bottom: 2px solid #ec407a;*/
-    font-weight: bold;
-    background:  #702135;
+    text-shadow: 1px 1px rgb(80, 47, 2);
     color: white;
   }
-  .input-field input[type="text"]:focus + label {
-    color: #635f60;
-  }
-  .input-field input[type="text"]:focus {
-    border-bottom: 1px solid #635f60;
-    box-shadow: 0 1px 0 0 #000;
-  }
-  .input-field .prefix.active {
-    color: #635f60;
-  }
-  .topnav {
+  /* #nameComment {
+    /*border-bottom: 2px solid #ec407a;*/
+    /* font-weight: bold;
+    background:  #702135;
+    color: white; */
+  /* } */
+  
+  .container-header {
     background-color: #daac16;
     text-shadow: 1px 1px #000;
+    height: 2.5rem;
+    position: absolute;
+    width: 100%;
+    top: 0
+  }
+  .brand-logo {
+    margin-left: 30px;
+    font-size: 20px;
+  }
+  h2 {
+   font-size: 22px;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   }
   h3 {
     border-radius:15px 50px;
     height: 100px;
     padding: 20px;
     text-shadow: 1px 1px rgb(75, 68, 68);
+
   }
   h5 {
     color: white;
@@ -73,7 +78,9 @@ body {
     overflow: auto;
     width: 60%;
     height: 600px;
-    font-size: 20px;
+    font-size: 24px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
   }
   #notes {
     float: right;
@@ -82,11 +89,11 @@ body {
     border-radius: 4px;
   }
   textarea,
-  input {
-    /* display: block;  */
+  input[type="text"]:focus + label {
     width: 100%; 
     background-color: #f1f1ed;
     border-radius: 5px;
+    color: #635f60;
   }
   input {
     height: 36px;
@@ -95,4 +102,22 @@ body {
   textarea {
     height: 200px;
     font-size: 18px;
+  }
+  .input-field input[type="text"]:focus + label {
+    color: #635f60;
+  }
+  .textarea, input[type="text"]:focus {
+    border-bottom: 1px solid #635f60;
+    box-shadow: 0 1px 0 0 #000;
+  }
+  .textarea, input .prefix.active {
+    color: #635f60;
+  }
+  .footer {
+    background-color: #daac16;
+    text-shadow: .5px .5px #000;
+    position: absolute;
+    bottom: 0;
+    height: 2.5rem;
+    width: 100%;
   }
