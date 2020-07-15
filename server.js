@@ -5,9 +5,7 @@ var axios = require('axios')
 var cheerio = require('cheerio')
 
 var db = require('./models')
-// var PORT = process.env.PORT || 3000
-var PORT = 3000
-
+var PORT = process.env.PORT || 3000
 var app = express()
 
 app.use(logger('dev'))
@@ -16,11 +14,9 @@ app.use(express.json())
 app.use(express.static('public'))
 
 // Connect to the Mongo DB
-var MONGODB_URI =
-  process.env.MONGODB_URI || 'mongodb://localhost/unit18Populater'
-mongoose.connect(MONGODB_URI), { useNewUrlParser: true }
-// useNewUrlParser: true
-// })
+mongoose.connect('mongodb://localhost/unit18Populater', {
+  useNewUrlParser: true
+})
 
 // Routes
 app.get('/scrape', function (req, res) {
