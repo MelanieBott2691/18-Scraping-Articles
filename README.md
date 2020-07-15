@@ -31,5 +31,5 @@ Deployment of application to Heroku set with mLab provision.
 
 ###### Screenshots of GET and POSTS
 ![](public/assets/img/makenotes.png)
-![](public/assets/img/writenote.png)
+<img src="public/img/writenote.png" width="600px">
 ![](public/assets/img/getsandposts.png)
