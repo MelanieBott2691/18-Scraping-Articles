@@ -62,19 +62,19 @@ module.exports = function (app) {
       var $ = cheerio.load(response.data)
 
       // Get every h2 within article tag
-      $('article').each(function (i, element) {
+      $('#articles').each(function (i, element) {
         var result = {}
 
         // Get the text and href of every link, save them as properties of the result object.
         var headline = $(element)
-          .find('h2.post-title')
+          .find('h6')
           .text()
         var url = $(element)
-          .find('h2.post-title')
+          .find('h6')
           .children('a')
           .attr('href')
         var summary = $(element)
-          .find('div.excerpt')
+          .find('body')
           .children('p')
           .text()
         var date = $(element)

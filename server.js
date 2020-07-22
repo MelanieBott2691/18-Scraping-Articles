@@ -32,7 +32,7 @@ mongoose.connect(MONGODB_URI)
 app.get('/scrape', function (req, res) {
   axios.get('http://www.kotaku.com/').then(function (response) {
     var $ = cheerio.load(response.data)
-    $('article h2').each(function (i, element) {
+    $('articles h6').each(function (i, element) {
       var result = {}
 
       // Add the text and href of every link, and save them as properties of the result object
