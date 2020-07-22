@@ -1,0 +1,145 @@
+html {
+  background-color: white; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom left, #702135, #daac16); /* Standard syntax (must be last) */
+}
+body {
+    background-size: 600px;
+    font-family: "Oswald", sans-serif;
+    font-size: 14px;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+  main {
+    flex: 1 0 auto;
+  }
+ 
+  #savenote {
+    background-color: #702135;
+    border-radius: 6px;
+    text-shadow: 1px 1px rgb(80, 47, 2);
+    color: white;
+  }
+  
+  .container-header {
+    background-color: #daac16;
+    text-shadow: 1px 1px #000;
+    height: 2.5rem;
+    position: absolute;
+    width: 100%;
+    top: 0
+  }
+  .brand-logo {
+    margin-left: 30px;
+    font-size: 20px;
+  }
+  h2 {
+   font-size: 22px;
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+  h3 {
+    border-radius:15px 50px;
+    height: 100px;
+    padding: 20px;
+    text-shadow: 1px 1px rgb(75, 68, 68);
+
+  }
+  h5 {
+    color: white;
+    text-shadow: 2px 2px #000;
+  }
+  .z-depth-3 {
+    box-shadow: 0 6px 10px 0 rgba(10, 8, 3, 0.29), 0 1px 18px 0 rgba(22, 5, 5, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3)
+  }
+  .card-panel {
+    border-radius: 6px;
+    box-shadow: 0 6px 10px 0 rgba(10, 8, 3, 0.29), 0 1px 18px 0 rgba(22, 5, 5, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3)
+  }
+   /* body { background-color: #F2F6D0 } */
+   #wrapper {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5%;
+  }
+  #articles {
+    display: inline-block;
+    overflow: auto;
+    width: 60%;
+    height: 600px;
+    font-size: 24px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+  }
+  #notes {
+    float: right;
+    width: 20%;
+    height: 10%;
+    border-radius: 4px;
+  }
+  textarea,
+  input[type="text"]:focus + label {
+    width: 100%; 
+    background-color: #f1f1ed;
+    border-radius: 5px;
+    color: #635f60;
+  }
+  input {
+    height: 36px;
+    font-size: 24px;
+  }
+  textarea {
+    height: 200px;
+    font-size: 18px;
+  }
+  .input-field input[type="text"]:focus + label {
+    color: #635f60;
+  }
+  .textarea, input[type="text"]:focus {
+    border-bottom: 1px solid #635f60;
+    box-shadow: 0 1px 0 0 #000;
+  }
+  .textarea, input .prefix.active {
+    color: #635f60;
+  }
+  .footer {
+    background-color: #daac16;
+    text-shadow: .5px .5px #000;
+    position: absolute;
+    bottom: 0;
+    height: 2.5rem;
+    width: 100%;
+  }
+  .buttonRight{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    margin-left: -10px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    }
+  .buttonRightCenter{
+    position: absolute;
+    bottom: 0;
+    right: 80px;
+    display: inline-block;
+    margin-right: 80px;
+    margin-bottom: 4px;
+  }
+/*     
+    .box{
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    padding-top: 10px;
+    width: 75%;
+    position: relative;
+    left: 0;
+    top: 0;
+    height: 60%;
+    background-color: rgb(204, 38, 38);
+    border: 2px solid black
+    } */
