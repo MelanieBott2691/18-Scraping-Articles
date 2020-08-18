@@ -1,67 +1,83 @@
-$.getJSON('/articles', function (data) {
-  for (var i = 0; i < data.length; i++) {
-    $('#articles').append(
-      "<p data-id='" +
-        data[i]._id +
-        "'>" +
-        data[i].title +
-        '<br />' +
-        data[i].link +
-        '</p>'
-    )
-  }
-})
+$(document).on("click", "#scrape-button", function() {
+    $.ajax({
+        method: "GET",
+        url: "/scrape"
+    })
+    window.location.replade("/scrape");
+});
+$(document).on("click", ".delete-artilce", function() {
+    var thisId = $(this).attr("data-id");
+    $.ajax({
+        method: "DELETE",
+        url: "/saved" + thisId
+    }).then(function(data) {
+        console.log(data);
+        location.reload();
+    });
+});
 
-$(document).on('click', 'p', function () {
-  $('#notes').empty()
-  var thisId = $(this).attr('data-id')
-  $.ajax({
-    method: 'GET',
-    url: '/articles/' + thisId
-  }).done(function (data) {
-    console.log(data)
-    $('#notes').append('<h2>' + data.title + '</h2>')
-    $('#notes').append("<input id='titleinput' name='title' >")
-    $('#notes').append("<textarea id='bodyinput' name='body'></textarea>")
-    $('#notes').append(
-      "<button data-id='" + data._id + "' id='savenote'>Save Note</button>"
-    )
 
-    if (data.note) {
-      $('#titleinput').val(data.note.title)
-      $('#bodyinput').val(data.note.body)
-    }
-  })
-})
-$(document).on('click', '#savenote', function () {
-  var thisId = $(this).attr('data-id')
+// Save an article
+$(document).on("click", ".save-article", function() {
+    var thisId = $(this).attr("data-id");
+    $(this).hide();
+    var data = {}
+    data.title = $("#title-" + thisId).text();
+    data.link = $("#link-" + thisId).text();
+    data.excerpt = $("#excerpt-" + thisId).text();
+    $.ajax({
+        method: "POST",
+        dataType: "json",
+        url: "/api/saved",
+        data: data
+    });
+});
 
-  // Run a POST request to change the note, using what's entered in the inputs
-  $.ajax({
-    method: 'POST',
-    url: '/article' + thisId,
-    data: {
-      title: $('#titleinput').val(),
-      body: $('#bodyinput').val()
-    }
-  }).done(function (data) {
-    console.log(data)
-    $('#notes').empty()
-  })
+//Go to the notes page for a particular article
+$(document).on("click", ".note-comment", function() {
+    var thisId = $(this).attr("data-id");
+    $.ajax({
+        method: "GET",
+        url: "/articles/" + thisId
+    })
+    window.location.replace("/articles/" + thisId);
+});
 
-  $('#titleinput').val('')
-  $('#bodyinput').val('')
-})
-$('#scrape-btn').on('click', function (event) {
-  console.log('scraping articles...')
-  event.preventDefault()
+// Submit a note
+$(document).on("click", "#submit-note", function() {
+    // Grab the id associated with the article from the submit button
+    var thisId = $(this).attr("data-id");
+    // Run a POST request to save the note
+    $.ajax({
+            method: "POST",
+            url: "/articles/" + thisId,
+            data: {
+                // Value taken from title input
+                title: $("#title-note").val(),
+                // Value taken from note textarea
+                body: $("#note-description").val()
+            }
+        })
+        .then(function(data) {
+            // Log the response
+            console.log(data);
+            window.location.replace("/articles/" + data._id);
+        });
+    // Also, remove the values entered in the input and textarea for note entry
+    $("#title-note").val("");
+    $("#note-description").val("");
+});
 
-  $('#article-body').empty()
-
-  $.ajax('/scrape', {
-    type: 'GET'
-  }).then(function () {
-    console.log('Scrape complete')
-    window.location = '/'
-  })
-})
+//delete a note
+$(document).on("click", ".delete-note", function() {
+    var thisId = $(this).attr("data-id");
+    $.ajax({
+            method: "DELETE",
+            url: "/articles/" + thisId
+        })
+        .then(function(data) {
+            // Log the response
+            console.log(data);
+            location.reload();
+        });
+});
