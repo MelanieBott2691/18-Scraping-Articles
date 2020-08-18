@@ -17,3 +17,14 @@
         </div>
       </div>
     </div>
+
+    <div class="fluid-container">
+      <div id="wrapper">
+        <h5 class="page-title text-center">Scraped Articles</h5>
+        <div id="articles" class="row m-2">
+          {{#each articles}}
+          {{>general-view}}
+          {{/each}}
+        </div>
+      </div>
+    </div>

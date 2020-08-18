@@ -1,4 +1,73 @@
-// var axios = require('axios')
+//  Get Articles
+var db = require('../models');
+var scrape = require("../scripts/scrape");
+module.exports = {
+    scrapeArticle: function(req, res) {
+        return scrape().then(function(articles) {
+            return db.Article.create(articles);
+        }).then(function(dbArticle) {
+            if (dbArticle.length === 0) {
+                res.json({
+                    message: "No new articles"
+                });
+            } else {
+                res.json({
+                    message: "Added " + dbArticle.length + " new articles"
+                });
+            }
+        }).catch(function(err) {
+            res.json({
+                message: "Scrape complete!"
+            });
+        });
+    },
+    // Articles
+    findAll: function(req, res) {
+        db.Article
+            .find(req.query)
+            .sort({ date: -1 })
+            .then(function(dbArticle) {
+                res.json(dbArticle);
+            });
+    },
+    // Delete the specified headline
+    delete: function(req, res) {
+        db.Article.remove({ _id: req.params.id }).then(function(dbArticle) {
+            res.json(dbArticle);
+        });
+    },
+    // Update the specified headline
+    update: function(req, res) {
+        db.Article.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true }).then(function(dbArticle) {
+            res.json(dbArticle);
+        });
+    },
+    // Clear Articles
+    clearDB: function(req, res) {
+        db.Article.remove({}).then(function() {
+            return db.Note.remove({});
+        }).then(function() {
+            res.json({ ok: true });
+        });
+    },
+    // Notes
+    find: function(req, res) {
+        db.Note.find({ _articleId: req.params.id }).then(function(dbNote) {
+            res.json(dbNote);
+        });
+    },
+    create: function(req, res) {
+        db.Note.create(req.body).then(function(dbNote) {
+            res.json(dbNote);
+        });
+    },
+    delete: function(req, res) {
+        db.Note.remove({ _id: req.params.id }).then(function(dbNote) {
+            res.json(dbNote);
+        });
+    }
+};
+
 // var cheerio = require('cheerio')
 // var mongoose = require('mongoose')
 
@@ -139,13 +208,13 @@
 //     var id = req.params.articleId
 //     var data = req.body
 
-//     db.Comment.create(data)
-//       .then(function (dbComment) {
-//         return db.Article.findOneAndUpdate(
-//           { _id: id },
-//           { $push: { comment: dbComment._id } },
-//           { new: true }
-//         )
+// //     db.Comment.create(data)
+// //       .then(function (dbComment) {
+// //         return db.Article.findOneAndUpdate(
+// //           { _id: id },
+// //           { $push: { comment: dbComment._id } },
+// //           { new: true }
+// //         )
 //       })
 //       .then(function (dbComment) {
 //         console.log(dbComment)
