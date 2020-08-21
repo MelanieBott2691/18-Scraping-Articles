@@ -1,0 +1,38 @@
+<div class="jumbotron text-center">
+  <div class="overlay"></div>
+  <div class="background-image"></div>
+  <div class="caption">
+    {{!-- <h1>PC Perspective Scraper</h1> --}}
+    <h4>Saved articles: Leave a comment or delete articles</h4>
+  </div>
+</div>
+
+<div class="container-fluid article-container" id="article-body">
+  {{#if article}}
+  {{#each article}}
+  <div class="card">
+    <img class="card-img-top" src="{{this.image}}" alt="Card image">
+    <div class="card-body">
+      <a href={{this.url}} target="_blank">
+        <h5 class="card-title">{{this.headline}}</h5>
+      </a>
+      <p class="card-text">{{this.summary}}</p>
+      <button class="btn btn-primary comment-btn" data-toggle="modal" data-target="#comment-modal"
+        data-id={{this._id}}>View/Add Comment</button>
+      <button class="btn btn-danger delete-btn" data-id={{this._id}}>Delete</button>
+
+    </div>
+  </div>
+  {{/each}}
+  {{else}}
+  <div class="card">
+    <div class="card-body">
+      <h4>No saved articles found!</h4>
+    </div>
+  </div>
+  {{/if}}
+</div>
+
+{{#each article}}
+{{> comments }}
+{{/each}}

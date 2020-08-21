@@ -3,19 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/MelanieBott2691/18-Scraping-Articles.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MelanieBott2691/18-Scraping-Articles/issues"
-  },
-  "homepage": "https://github.com/MelanieBott2691/18-Scraping-Articles#readme",
+  "homepage": "https://melaniebott2691.github.io/18-Scraping-Articles",
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
@@ -28,5 +16,34 @@
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
     "request": "^2.88.2"
+  },
+
+"scripts": {
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start-dev": "babel-node --eval \"require('./tools/start')().catch(err => console.log(err.stack))\"",
+    "start": "NODE_ENV=production node server.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MelanieBott2691/18-Scraping-Articles.git",
+      "_id": "heroku_wjqkjs6j.user1",
+      "user": "user1",
+      "db": "heroku_wjqkjs6j",
+      "roles": [
+          {
+              "role": "dbOwner",
+              "db": "heroku_wjqkjs6j"
+          }
+      ]
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MelanieBott2691/18-Scraping-Articles/issues"
   }
+  
 }

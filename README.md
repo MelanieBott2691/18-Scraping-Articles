@@ -26,6 +26,7 @@ Deployment of application to Heroku set with mLab provision.
 
 #### Screenshots
 ###### Screenshot of Scraping Application
+![](puplic/assets/img/scraperscreenshot.png)
 ![](public/assets/img/scraperscreenshot.png)
 ![](public/assets/img/notes.png)
 
