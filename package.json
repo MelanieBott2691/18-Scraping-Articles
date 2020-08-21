@@ -1,7 +1,7 @@
 {
   "name": "18-scraping-articles",
   "version": "1.0.0",
-  "description": "",
+  "description": "Google Books Search",
   "main": "server.js",
   "homepage": "https://melaniebott2691.github.io/18-Scraping-Articles",
   
