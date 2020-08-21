@@ -4,13 +4,15 @@
   "description": "",
   "main": "server.js",
   "homepage": "https://melaniebott2691.github.io/18-Scraping-Articles",
+  
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
-    "express-handlebars": "^5.0.0",
-    "mongoose": "^5.9.22",
+    "express-handlebars": "^5.1.0",
+    "mongodb": "^3.6.0",
+    "mongoose": "^5.10.0",
     "morgan": "^1.10.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -39,11 +41,16 @@
               "db": "heroku_wjqkjs6j"
           }
       ]
-  },
+    },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MelanieBott2691/18-Scraping-Articles/issues"
+    "url": "https://github.com/MelanieBott2691/18-Scraping-Articles/issues",
+  "devDependencies": {
+    "gh-pages": "^3.1.0",
+    "git-push": "^0.1.1"
   }
-  
 }
+}
+  
+
