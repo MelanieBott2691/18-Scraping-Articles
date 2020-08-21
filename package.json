@@ -1,16 +1,15 @@
 {
   "name": "18-scraping-articles",
   "version": "1.0.0",
-  "description": "Google Books Search",
+  "description": "",
   "main": "server.js",
   "homepage": "https://melaniebott2691.github.io/18-Scraping-Articles",
-  
   "dependencies": {
     "axios": "^0.19.2",
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
-    "express-handlebars": "^5.1.0",
+    "express-handlebars": "^5.0.0",
     "mongodb": "^3.6.0",
     "mongoose": "^5.10.0",
     "morgan": "^1.10.0",
@@ -19,8 +18,7 @@
     "react-scripts": "^3.4.1",
     "request": "^2.88.2"
   },
-
-"scripts": {
+  "scripts": {
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -32,25 +30,23 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MelanieBott2691/18-Scraping-Articles.git",
-      "_id": "heroku_wjqkjs6j.user1",
-      "user": "user1",
-      "db": "heroku_wjqkjs6j",
-      "roles": [
-          {
-              "role": "dbOwner",
-              "db": "heroku_wjqkjs6j"
-          }
-      ]
-    },
+    "_id": "heroku_wjqkjs6j.user1",
+    "user": "user1",
+    "db": "heroku_wjqkjs6j",
+    "roles": [
+      {
+        "role": "dbOwner",
+        "db": "heroku_wjqkjs6j"
+      }
+    ]
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MelanieBott2691/18-Scraping-Articles/issues",
+    "url": "https://github.com/MelanieBott2691/18-Scraping-Articles/issues"
+  },
   "devDependencies": {
     "gh-pages": "^3.1.0",
     "git-push": "^0.1.1"
   }
 }
-}
-  
-
