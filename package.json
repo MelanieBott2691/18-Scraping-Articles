@@ -9,15 +9,15 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MelanieBott2691/18-Scraping-Articles.git",
-      "_id": "heroku_wjqkjs6j.user1",
-      "user": "user1",
-      "db": "heroku_wjqkjs6j",
-      "roles": [
-          {
-              "role": "dbOwner",
-              "db": "heroku_wjqkjs6j"
-          }
-      ]
+    "_id": "heroku_wjqkjs6j.user1",
+    "user": "user1",
+    "db": "heroku_wjqkjs6j",
+    "roles": [
+      {
+        "role": "dbOwner",
+        "db": "heroku_wjqkjs6j"
+      }
+    ]
   },
   "author": "",
   "license": "ISC",
@@ -31,6 +31,7 @@
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
     "express-handlebars": "^5.1.0",
+    "mongodb": "^3.6.0",
     "mongoose": "^5.10.0",
     "morgan": "^1.10.0",
     "react": "^16.13.1",

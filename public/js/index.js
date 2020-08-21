@@ -1,4 +1,24 @@
 $(document).ready(function () {
+  var containerArticle = $('.container-article');
+  $(document).on('click', '.btn.save', handleSaveArticle);
+  $(document).on('click', '.scrape-new', handleSaveArticle);
+
+  // get articles with initPage()
+  function initPage() {
+    $.get('/api/articles?saved=false').then(function (data) {
+      containerArticle.empty();
+      renderEmpty();
+    });
+  }
+
+  function renderArticles(articles) {
+    var articleSection = [];
+    for (var i = 0; i < articles.length; i++) {
+      articleSection.push(createSection(articles[i]));
+    }
+    containerArticle.append(articleSection);
+  }
+
   //function to display error modal on ajax error
   function showErrorModal(error) {
     $('#error').modal('show');
