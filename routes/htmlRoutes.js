@@ -9,6 +9,10 @@ var db = require('../models');
 
 module.exports = function (app) {
   app.get('/', function (req, res) {
+
+    axios.get('http://www.kotaku.com/').then(function (response) {
+      // Load the body of the HTML into cheerio
+      var $ = cheerio.load(response.data);
     // Grab every document in the Articles collection
     db.Article.find({})
       .then(function (dbArticle) {

@@ -11,12 +11,12 @@ module.exports = function (app) {
   // A GET route for scraping the website
   app.get('/scrape', function (req, res) {
     // Making a request via axios for `hackerrank.com`'s blog
-    axios.get('https://blog.hackerrank.com/').then(function (response) {
+    axios.get('http://www.kotaku.com/').then(function (response) {
       // Load the body of the HTML into cheerio
       var $ = cheerio.load(response.data);
 
       // With cheerio, find each ul-tag and loop through the results
-      $('ul.blog-list')
+      $('article h2')
         .children()
         .each(function (i, element) {
           // Save an empty result object
@@ -42,7 +42,7 @@ module.exports = function (app) {
               console.log(err);
             });
         });
-
+      res.send('Scrape Complete');
       res.redirect('/');
     });
   });
