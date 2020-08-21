@@ -1,38 +1,66 @@
-<div class="jumbotron text-center">
-  <div class="overlay"></div>
-  <div class="background-image"></div>
-  <div class="caption">
-    {{!-- <h1>PC Perspective Scraper</h1> --}}
-    <h4>Saved articles: Leave a comment or delete articles</h4>
+<div class="container">
+  <div class="jumbotron jumbotron-fluid">
+    <h1 class="display-4">Mongo Scraper</h1>
+    <p class="lead">HackerRank Edition</p>
   </div>
-</div>
+  <hr>
 
-<div class="container-fluid article-container" id="article-body">
-  {{#if article}}
-  {{#each article}}
-  <div class="card">
-    <img class="card-img-top" src="{{this.image}}" alt="Card image">
-    <div class="card-body">
-      <a href={{this.url}} target="_blank">
-        <h5 class="card-title">{{this.headline}}</h5>
-      </a>
-      <p class="card-text">{{this.summary}}</p>
-      <button class="btn btn-primary comment-btn" data-toggle="modal" data-target="#comment-modal"
-        data-id={{this._id}}>View/Add Comment</button>
-      <button class="btn btn-danger delete-btn" data-id={{this._id}}>Delete</button>
-
-    </div>
-  </div>
-  {{/each}}
+<div id="articles">
+  {{#each dbArticle}}
+    {{#if saved}}
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{title}}</h5>
+          <a class="card-text" href={{link}}>Click here to Read!</a>
+          <hr>
+          <p class="card-text">{{text}}</p>
+          <button class="btn btn-success" id="addNote" data-id={{_id}}>Add Note</button>
+          <button class="btn btn-danger" id="delete" data-id={{_id}}>Delete from Saved</button>
+        </div>
+      </div>
+      <br>
+    {{/if}}
   {{else}}
-  <div class="card">
-    <div class="card-body">
-      <h4>No saved articles found!</h4>
-    </div>
-  </div>
-  {{/if}}
+      <h4>No saved articles yet!</h4>
+  {{/each}}
 </div>
 
-{{#each article}}
-{{> comments }}
-{{/each}}
+</div>
+  
+  
+  {{!-- modal for displaying and creating notes --}}
+  <div id="noteModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Add a note</h4>
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="noteTitleEntry" class="noteInput" placeholder="Enter Title">
+          <input type="text" id="noteBodyEntry" class="noteInput" placeholder="Enter Body">
+          <div id="noteArea"></div>
+        </div>
+        <div class="modal-footer">
+          <h5 class="instructions">Click the note to read it, or X to delete</h5>
+          <button class="btn btn-success" type="button" id="submitNote">Save Note</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {{!-- error modal --}}
+  <div id="error" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <h2>There was an error processing your request.  Please try again later.</h2>
+        </div>
+      </div>
+    </div>
+  </div>
