@@ -7,39 +7,38 @@ var app = express();
 var PORT = process.env.PORT || 3000;
 
 app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-
-app.use(express.static(process.cwd() + '/public'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(express.static('public'));
+var MONGODB_URI =
+  process.env.MONGODB_URI || 'mongodb://localhost/unit18Populater';
 var exphbs = require('express-handlebars');
-app.engine(
-  'handlebars',
-  exphbs({ defaultLayout: 'main', layoutsDir: __dirname + '/views/layouts' })
-);
+
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-mongoose.connect(
-  'mongodb://heroku_wjqkjs6jroot@ds157654.mlab.com:57654/heroku_wjqkjs6j',
-  { useNewUrlParser: true }
-);
-// mongoose.connect(
-//   process.env.MONGODB_URI || 'mongodb://localhost/unit18Populater');
-var databaseUri = 'mongodb://localhost/nhlscrape';
-if (process.env.MONGODB_URI) {
-  mongoose.connect(process.env.MONGODB_URI);
-} else {
-  mongoose.connect(databaseUri);
-}
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  console.log('Connected to Mongoose!');
-});
-// get routes
-var routes = require('./controllers/controller');
-app.use('/', routes);
+require('./routes/apiRoutes')(app);
+require('./routes/htmlRoutes')(app);
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+
+// // mongoose.connect(
+// //   process.env.MONGODB_URI || 'mongodb://localhost/unit18Populater');
+// var databaseUri = 'mongodb://localhost/nhlscrape';
+// if (process.env.MONGODB_URI) {
+//   mongoose.connect(process.env.MONGODB_URI);
+// } else {
+//   mongoose.connect(databaseUri);
+// }
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
+// db.once('open', function () {
+//   console.log('Connected to Mongoose!');
+// });
 
 // Start the server
 app.listen(PORT, function () {
   console.log('Listening on port ' + PORT + '!');
 });
-dependencies;
+
+module.exports = app;
