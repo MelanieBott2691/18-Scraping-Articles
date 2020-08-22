@@ -21,7 +21,7 @@ body {
     color: white;
   }
   
-  .container-header {
+  .navbar-header {
     background-color: #daac16;
     text-shadow: 1px 1px #000;
     height: 2.5rem;
@@ -29,7 +29,7 @@ body {
     width: 100%;
     top: 0
   }
-  .brand-logo {
+  .navbar-brand {
     margin-left: 30px;
     font-size: 20px;
   }
