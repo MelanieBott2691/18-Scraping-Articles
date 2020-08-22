@@ -24,8 +24,7 @@
     <!-- HEADER -->
     <div class="container-header">
         <a href="/scrape" class="brand-logo">Scraper Gaming News</a>
-      </div>
- 
+        <button onclick="myFunction()" id="scrape" style="float:right; background-color: transparent; border: none; overflow: hidden; cursor: pointer;font-family: Georgia, 'Times New Roman', Times, serif; color: whitesmoke;text-shadow: 1px 1px black;">Scrape For New Articles</button></div>
     <!-- BODY -->
     <br />
     <div id="wrapper">
@@ -62,4 +61,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="app.js"></script>
 </body>
+<script>
+  function myFunction() {
+    document.getElementById("scrape").style.color = "black";
+}
+</script>
 </html>
