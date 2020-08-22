@@ -1,4 +1,17 @@
-{{!-- // navbar --}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Scraping Articles</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../public/assets/css/style.css" type="text/css">
+  <script src="js/app.js"></script>
+  <link href="../public/assets/css/style.css">
+</head>
+<body>
+  <!-- {{!-- // navbar --}} -->
 <div class="jumbotron container-fluid" id="jumbotron">
 <nav class="navbar navbar-default navbar-fixed-top" id="navbar">
     <div class="container-fluid">
@@ -13,34 +26,34 @@
 </nav>
 </div>
 
-{{!-- // body --}}
+<!-- {{!-- // body --}} -->
 <div>
     <h4 class="title justify-content-md-center">Read What's Trending on Kotaku Gaming News</h4>
     <div class="row">
       <h5 class="scrape justify-content-md-center">Click 'Scrape' to get the latest articles</h5>
     </div>
 </div>
-{{!-- // articles --}}
+<!-- {{!-- // articles --}} -->
 <div id="wrapper">
 <div class="row">
   <div class="col-2 md-left">
   <div id="articles"></div>
-    {{#each articles}}
+    <!-- {{#each articles}} -->
     <div class="article">
       <h2>{{title}}</h2>
-      {{#unless saved}}
+      <!-- {{#unless saved}} -->
               <button class="btn btn-success save" data-id="{{id}}"> Save Article! </button>
-            {{/unless}}
-            {{#if saved}}
+            <!-- {{/unless}} -->
+            <!-- {{#if saved}} -->
               <p>This article is saved!</p>
-            {{/if}}
+            <!-- {{/if}} -->
             <br>
             <a href={{link}}>Link</a>
-            <p>{{summary}}</p>
-            {{#each note}}
+            <!-- <p>{{summary}}</p> -->
+            <!-- {{#each note}} -->
               <p>Comment: {{body}}</p>
               <button type="button" class="delComment btn btn-warning" data-id="{{id}}">Delete Comment!</button>
-            {{/each}}
+            <!-- {{/each}} -->
             <form class="comment" data-id="{{id}}">
               <div class="form-group">
                 <label for="note">Make a Note!</label>
@@ -49,7 +62,7 @@
               <button type="submit" class="btn btn-primary">Add</button>
             </form>
           </div>
-        {{/each}}
+        <!-- {{/each}} -->
     </div>
   </div> 
   </div>
@@ -64,3 +77,9 @@
 
 </footer>
  <link href="../public/assets/css/style.css">
+ 
+
+  
+</body>
+
+</html>

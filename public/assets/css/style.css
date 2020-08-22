@@ -1,6 +1,8 @@
 html {
   background-color: white; /* For browsers that do not support gradients */
   background-image: linear-gradient(to bottom left, #702135, #daac16); /* Standard syntax (must be last) */
+  margin-left: 4px;
+  margin-right: 4px;
 }
 body {
     background-size: 600px;
@@ -9,6 +11,11 @@ body {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+  }
+
+  .jumbotron {
+    background-color: purple;
+
   }
   main {
     flex: 1 0 auto;
@@ -43,6 +50,9 @@ body {
     padding: 20px;
     text-shadow: 1px 1px rgb(75, 68, 68);
 
+  }
+  h4 {
+    color: purple;
   }
   h5 {
     color: white;

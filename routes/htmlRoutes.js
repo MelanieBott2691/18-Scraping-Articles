@@ -1,17 +1,17 @@
-const axios = require('axios');
-const cheerio = require('cheerio');
-const db = require('../models');
+var axios = require('axios');
+var cheerio = require('cheerio');
+var db = require('../models');
 
 module.exports = function (app) {
   app.get('/', function (req, res) {
     axios
-      .get('https://www.huffpost.com/impact/topic/good-news/')
+      .get('https://www.kotaku.com')
       .then(function (response) {
         const $ = cheerio.load(response.data);
-        $('div.card__text').each(function (i, element) {
+        $('h4').each(function (i, element) {
           const result = {};
           result.title = $(this)
-            .children('div [class=card__headlines]')
+            .children('div [class=sc-1dm5z0l]')
             .children('a')
             .children('h2')
             .text();
