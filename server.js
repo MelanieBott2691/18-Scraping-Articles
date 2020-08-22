@@ -1,29 +1,31 @@
 var express = require('express');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-var bodyParser = require('body-parser');
-var app = express();
+// var bodyParser = require('body-parser');
 
 var PORT = process.env.PORT || 3000;
+var app = express();
 
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static('public'));
+
 var MONGODB_URI =
   process.env.MONGODB_URI || 'mongodb://localhost/unit18Populater';
 var exphbs = require('express-handlebars');
 
+// mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect('mongodb://localhost/unit18Populater', {
+  useNewUrlParser: true
+});
+
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
-require('./routes/apiRoutes')(app);
-require('./routes/htmlRoutes')(app);
+require('./routes')(app);
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
-
-// // mongoose.connect(
-// //   process.env.MONGODB_URI || 'mongodb://localhost/unit18Populater');
+// mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/unit18Populater');
 // var databaseUri = 'mongodb://localhost/nhlscrape';
 // if (process.env.MONGODB_URI) {
 //   mongoose.connect(process.env.MONGODB_URI);
@@ -40,5 +42,3 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 app.listen(PORT, function () {
   console.log('Listening on port ' + PORT + '!');
 });
-
-module.exports = app;
