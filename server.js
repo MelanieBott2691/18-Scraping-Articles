@@ -19,10 +19,11 @@ app.engine(
 );
 app.set('view engine', 'handlebars');
 mongoose.connect(
-  'mongodb://heroku_wjqkjs6jroot@ds157654.mlab.com:57654/heroku_wjqkjs6j'
+  'mongodb://heroku_wjqkjs6jroot@ds157654.mlab.com:57654/heroku_wjqkjs6j',
+  { useNewUrlParser: true }
 );
 // mongoose.connect(
-//   process.env.MONGODB_URI || 'mongodb://localhost/unit18Populater'
+//   process.env.MONGODB_URI || 'mongodb://localhost/unit18Populater');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
