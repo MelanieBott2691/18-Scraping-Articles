@@ -1,18 +1,30 @@
 var express = require('express');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-var axios = require('axios');
-var cheerio = require('cheerio');
+var bodyParser = require('body-parser');
+// var axios = require('axios');
+// var cheerio = require('cheerio');
 
 var db = require('./models');
 var PORT = process.env.PORT || 3000;
 var app = express();
 
 app.use(logger('dev'));
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use(express.static('public'));
-
+app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(express.urlencoded({ extended: true }));
+// app.use(express.json());
+app.use(express.static(process.cwd() + '/public'));
+var exphbs = require('express-handlebars');
+app.engine(
+  'handlebars',
+  exphbs({
+    defaultLayout: 'main'
+  })
+);
+app.set('view engine', 'handlebars');
+mongoose.connect(
+  'mongodb://heroku_wjqkjs6j.user1:root@ds157654.mlab.com:57654/heroku_wjqkjs6j'
+);
 // mongoose.connect(
 //   process.env.MONGODB_URI || 'mongodb://localhost/unit18Populater'
 // )
