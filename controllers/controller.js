@@ -9,35 +9,17 @@ var cheerio = require('cheerio');
 
 //Require models
 var Comment = require('../models/Note');
-var Article = require('../models/Article.js');
+var Article = require('../models/Article');
 
 //index
 router.get('/', function (req, res) {
   res.redirect('/articles');
 });
 
-// router.get('/test-scrape', function(req, res) {
-//   request(result.link, function(error, response, html) {
-//     var $ = cheerio.load(html);
-
-//     $('.l-col__main').each(function(i, element){
-//       var result = {};
-
-//       console.log($(this).children('.c-entry-content').children('p').text());
-//     });
-//   });
-// });
-
-// A GET request to scrape the Verge website
 router.get('/scrape', function (req, res) {
-  // First, we grab the body of the html with request
-  request('https://kotaku.com/', function (error, response, html) {
-    // Then, we load that into cheerio and save it to $ for a shorthand selector
-    var $ = cheerio.load(html);
-    var titlesArray = [];
-    // Now, we grab every article
-    $('.c-entry-box--compact__title').each(function (i, element) {
-      // Save an empty result object
+  axios.get('http://www.kotaku.com/').then(function (response) {
+    var $ = cheerio.load(response.data);
+    $('article h2').each(function (i, element) {
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
@@ -84,32 +66,53 @@ router.get('/scrape', function (req, res) {
   });
 });
 
-//this will grab every article an populate the DOM
+// Route for getting all Articles from the db
 router.get('/articles', function (req, res) {
-  //allows newer articles to be on top
-  Article.find()
-    .sort({ _id: -1 })
-    //send to handlebars
-    .exec(function (err, doc) {
-      if (err) {
-        console.log(err);
-      } else {
-        var artcl = { article: doc };
-        res.render('index', artcl);
-      }
+  db.Article.find({})
+    .then(function (dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function (err) {
+      res.json(err);
     });
 });
+// //this will grab every article an populate the DOM
+// router.get('/articles', function (req, res) {
+//   //allows newer articles to be on top
+//   Article.find()
+//     .sort({ _id: -1 })
+//     //send to handlebars
+//     .exec(function (err, doc) {
+//       if (err) {
+//         console.log(err);
+//       } else {
+//         var artcl = { article: doc };
+//         res.render('index', artcl);
+//       }
+//     });
+// });
 
-// This will get the articles we scraped from the mongoDB in JSON
-router.get('/articles-json', function (req, res) {
-  Article.find({}, function (err, doc) {
-    if (err) {
-      console.log(err);
-    } else {
-      res.json(doc);
-    }
-  });
+// Route for grabbing a specific Article by id, populate it with it's note
+router.get('/articles/:id', function (req, res) {
+  db.Article.findOne({ _id: req.params.id })
+    .populate('note')
+    .then(function (dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
 });
+// // This will get the articles we scraped from the mongoDB in JSON
+// router.get('/articles-json', function (req, res) {
+//   Article.find({}, function (err, doc) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       res.json(doc);
+//     }
+//   });
+// });
 
 //clear all articles for testing purposes
 router.get('/clearAll', function (req, res) {
@@ -123,57 +126,73 @@ router.get('/clearAll', function (req, res) {
   res.redirect('/articles-json');
 });
 
-router.get('/readArticle/:id', function (req, res) {
-  var articleId = req.params.id;
-  var hbsObj = {
-    article: [],
-    body: []
-  };
-
-  // //find the article at the id
-  Article.findOne({ _id: articleId })
-    .populate('comment')
-    .exec(function (err, doc) {
-      if (err) {
-        console.log('Error: ' + err);
-      } else {
-        hbsObj.article = doc;
-        var link = doc.link;
-        //grab article from link
-        request(link, function (error, response, html) {
-          var $ = cheerio.load(html);
-
-          $('.l-col__main').each(function (i, element) {
-            hbsObj.body = $(this)
-              .children('.c-entry-content')
-              .children('p')
-              .text();
-            //send article body and comments to article.handlbars through hbObj
-            res.render('article', hbsObj);
-            //prevents loop through so it doesn't return an empty hbsObj.body
-            return false;
-          });
-        });
-      }
+router.post('/articles/:id', function (req, res) {
+  db.Note.create(req.body)
+    .then(function (dbNote) {
+      return db.Article.findOneAndUpdate(
+        { _id: req.params.id },
+        { note: dbNote._id },
+        { new: true }
+      );
+    })
+    .then(function (dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function (err) {
+      res.json(err);
     });
 });
 
-// Create a new comment
-router.post('/comment/:id', function (req, res) {
+// router.get('/readArticle/:id', function (req, res) {
+//   var articleId = req.params.id;
+//   var hbsObj = {
+//     article: [],
+//     body: []
+//   };
+
+// //find the article at the id
+Article.findOne({ _id: articleId })
+  .populate('comment')
+  .exec(function (err, doc) {
+    if (err) {
+      console.log('Error: ' + err);
+    } else {
+      hbsObj.article = doc;
+      var link = doc.link;
+      //grab article from link
+      request(link, function (error, response, html) {
+        var $ = cheerio.load(html);
+
+        $('.').each(function (i, element) {
+          hbsObj.body = $(this)
+            .children('.c-entry-content')
+            .children('p')
+            .text();
+          //send article body and comments to article.handlbars through hbObj
+          res.render('article', hbsObj);
+          //prevents loop through so it doesn't return an empty hbsObj.body
+          return false;
+        });
+      });
+    }
+  });
+
+// Create a new note
+router.post('/note/:id', function (req, res) {
   var user = req.body.name;
-  var content = req.body.comment;
+  var content = req.body.note;
   var articleId = req.params.id;
 
   //submitted form
-  var commentObj = {
+  var noteObj = {
     name: user,
     body: content
   };
 
   //using the Comment model, create a new comment
-  var newComment = new Comment(commentObj);
+  var newNote = new Note(noteObj);
 
-  newComment.save(function (err, doc) {
+  newNote.save(function (err, doc) {
     if (err) {
       console.log(err);
     } else {
