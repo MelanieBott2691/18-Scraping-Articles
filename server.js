@@ -42,6 +42,11 @@ db.once('open', function () {
 var routes = require('./controllers/controller');
 app.use('/', routes);
 
+// MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
+
+// Connect to the Mongo DB
+// mongoose.connect(MONGODB_URI);
+
 // Start the server
 app.listen(PORT, function () {
   console.log('Listening on port ' + PORT + '!');
