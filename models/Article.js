@@ -12,20 +12,26 @@ var ArticleSchema = new Schema({
     unique: true,
     required: true
   },
+  summary: {
+    type: String,
+    required: true
+  },
   // `link` is required and of type String
   link: {
     type: String,
     required: true
   },
-
+  image: {
+    type: String
+  },
   saved: {
     type: Boolean,
     default: false
   },
-  note: [
+  comment: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Note'
+      ref: 'Comment'
     }
   ]
 });
@@ -35,3 +41,10 @@ var Article = mongoose.model('Article', ArticleSchema);
 
 // Export the Article model
 module.exports = Article;
+
+// db.mongoscraper.insertMany({
+//   title: 'New Batman Game Is Called Gotham Knights, Out Next Year',
+//   link:
+//     'https://kotaku.com/new-batman-game-is-called-gotham-knights-out-next-year-1844813454',
+//   note: ''
+// });

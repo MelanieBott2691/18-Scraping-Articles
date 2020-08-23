@@ -1,12 +1,23 @@
-// var express = require('express');
-// var path = require('path');
-// var router = express.Router();
+var express = require('express');
+var router = express.Router();
 
-// var request = require('request');
-// var cheerio = require('cheerio');
+var request = require('request');
+var cheerio = require('cheerio');
 
-// var Note = require('../models/Note');
-// var Article = require('../models/Article');
+var Note = require('../models/Note');
+var Article = require('../models/Article');
+
+axios.get('http://www.kotaku.com').then(function (response) {
+  var $ = cheerio.load(response.data);
+  var links = [];
+  var titlesArray = $(
+    '.sc-1pw4fyi-7 jWkhDT sc-14liz76-1 gtPaRI js_post_item'
+  ).each(function (i, element) {
+    links.push('http://www.kotaku.com' + $(a).attr('href'));
+  });
+  console.log(links);
+  console.log(titlesArray);
+});
 
 // router.get('/', function (req, res) {
 //   res.redirect('/articles');
