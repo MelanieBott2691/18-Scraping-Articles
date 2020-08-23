@@ -17,15 +17,12 @@ var ArticleSchema = new Schema({
     type: String,
     required: true
   },
-  text: {
-    type: String,
-    required: true
-  },
+
   saved: {
     type: Boolean,
     default: false
   },
-  notes: [
+  note: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Note'
