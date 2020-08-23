@@ -26,7 +26,8 @@ var ArticleSchema = new Schema({
   },
   saved: {
     type: Boolean,
-    default: false
+    default: false,
+    required: true
   },
   comment: [
     {
