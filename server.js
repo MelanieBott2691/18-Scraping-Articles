@@ -120,6 +120,75 @@ app.get('/comments/:id', function (req, res) {
     });
 });
 
+// Route get saved
+app.get('/saved', function (err, res) {
+  db.Article.find({})
+    .then(function (dbArticle) {
+      res.render('saved', {
+        articles: dbArticle
+      });
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+});
+// clear
+app.get('/clear', function (err, res) {
+  db.Article.deleteMany({})
+    .then(function () {
+      res.render('index');
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+});
+// delete articles and comments
+app.delete('/delete/:id', function (req, res) {
+  db.Article.deleteOne({ _id: req.params.id })
+    .then(function (dbArticles) {
+      res.render('saved', {
+        articles: dbArticles
+      });
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+});
+
+app.delete('/deletecomment/:id', function (req, res) {
+  db.Comment.deleteOne({ _id: req.params.id })
+    .then(function (dbArticles) {
+      res.render('saved', {
+        articles: dbArticles
+      });
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+});
+
+app.get('/articles/:id', function (req, res) {
+  db.Article.findOne({ _id: req.params.id })
+
+    .populate('comments')
+    .then(function (dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+});
+// get comments
+app.get('/comments/:id', function (req, res) {
+  db.Comment.findOne({ _id: req.params.id })
+
+    .then(function (dbArticle) {
+      res.json(dbArticle);
+    })
+    .catch(function (err) {
+      res.json(err);
+    });
+});
 // // Route for saving/updating an Article's associated Note
 app.post('/articles/:id', function (req, res) {
   //   // Create a new note and pass the req.body to the entry
