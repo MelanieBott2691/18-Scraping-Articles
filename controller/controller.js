@@ -5,8 +5,8 @@ var router = express.Router();
 var request = require('request');
 var cheerio = require('cheerio');
 
-var Note = require('../models/Note.js');
-var Article = require('../models/Article.js');
+var Note = require('../models/Note');
+var Article = require('../models/Article');
 
 router.get('/', function (req, res) {
   res.redirect('/articles');
@@ -17,7 +17,14 @@ router.get('/scrape', function (req, res) {
     var $ = cheerio.load(html);
     var titlesArray = [];
 
-    $('h4').each(function (i, element) {
+    // .c-entry-box--compact__title
+
+    $('.sc-1pw4fyi-7 jWkhDT sc-14liz76-1 gtPaRI js_post_item').each(function (
+      i,
+      element
+    ) {
+      // "article .sc-1pw4fyi-7"
+      // "p .sc-1d3a351-0"
       var result = {};
 
       result.title = $(this).children('a').text();
@@ -62,7 +69,7 @@ router.get('/articles', function (req, res) {
       }
     });
 });
-
+// scrape and put into a json
 router.get('/articles-json', function (req, res) {
   Article.find({}, function (err, doc) {
     if (err) {
@@ -72,7 +79,7 @@ router.get('/articles-json', function (req, res) {
     }
   });
 });
-
+// remove all artilces when got to endpoint (starts empty)
 router.get('/clearAll', function (req, res) {
   Article.remove({}, function (err, doc) {
     if (err) {
@@ -83,7 +90,7 @@ router.get('/clearAll', function (req, res) {
   });
   res.redirect('/articles-json');
 });
-
+// read article (specific article)
 router.get('/readArticle/:id', function (req, res) {
   var articleId = req.params.id;
   var hbsObj = {
@@ -92,7 +99,7 @@ router.get('/readArticle/:id', function (req, res) {
   };
 
   Article.findOne({ _id: articleId })
-    .populate('comment')
+    .populate('note')
     .exec(function (err, doc) {
       if (err) {
         console.log('Error: ' + err);
@@ -101,10 +108,11 @@ router.get('/readArticle/:id', function (req, res) {
         var link = doc.link;
         request(link, function (error, response, html) {
           var $ = cheerio.load(html);
-
-          $('.l-col__main').each(function (i, element) {
+          // "article .sc-1pw4fyi-7"
+          // "p .sc-1d3a351-0"
+          $('div .sc-1pw4fyi').each(function (i, element) {
             hbsObj.body = $(this)
-              .children('.c-entry-content')
+              .children('.p .sc-1d3a351-0')
               .children('p')
               .text();
 
@@ -115,19 +123,20 @@ router.get('/readArticle/:id', function (req, res) {
       }
     });
 });
-router.post('/comment/:id', function (req, res) {
+// area for notes, route post
+router.post('/note/:id', function (req, res) {
   var user = req.body.name;
-  var content = req.body.comment;
+  var content = req.body.note;
   var articleId = req.params.id;
 
-  var commentObj = {
+  var noteObj = {
     name: user,
     body: content
   };
 
-  var newComment = new Note(commentObj);
+  var newNote = new Note(noteObj);
 
-  newComment.save(function (err, doc) {
+  newNote.save(function (err, doc) {
     if (err) {
       console.log(err);
     } else {
@@ -136,7 +145,7 @@ router.post('/comment/:id', function (req, res) {
 
       Article.findOneAndUpdate(
         { _id: req.params.id },
-        { $push: { comment: doc._id } },
+        { $push: { note: doc._id } },
         { new: true }
       ).exec(function (err, doc) {
         if (err) {
