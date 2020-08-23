@@ -143,8 +143,15 @@ app.post('/articles/:id', function (req, res) {
       res.json(err);
     });
 });
+app.put('/saved/:id', function (req, res) {
+  db.Article.update({ _id: req.params.id }, { saved: true }).then(function (
+    dbArticle
+  ) {
+    res.json(dbArticle);
+  });
+});
 
 // // Start the server
-// app.listen(PORT, function () {
-//   console.log('App running on port ' + PORT + '!');
-// });
+app.listen(PORT, function () {
+  console.log('App running on port ' + PORT + '!');
+});
