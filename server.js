@@ -13,7 +13,12 @@ var app = express();
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
+// app.use(express.static('public'));
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('public'));
+}
+
 // app.get('/', function (req, res) {
 //   res.sendFile(path.join(__dirname + './public/index.html'));
 // });
@@ -29,10 +34,17 @@ app.set('view engine', 'handlebars');
 // });
 // // require('./routes/route');
 
-var MONGODB_URI =
-  process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
+// var MONGODB_URI =
+// process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
 // mongodb+srv://user1:<password>@mongoscraper.cfphn.mongodb.net/<dbname>?retryWrites=true&w=majority
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+mongoose.connect(
+  process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }
+);
+// mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // // mongoose.connect('mongodb://localhost/unit18Populater', {
 // //   useUnifiedTopology: true
 // // });
