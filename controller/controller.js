@@ -1,11 +1,11 @@
 var express = require('express');
-var router = express.Router();
 var path = require('path');
+var router = express.Router();
 
 var request = require('request');
 var cheerio = require('cheerio');
 
-var Comment = require('../models/Comment.js');
+var Note = require('../models/Note.js');
 var Article = require('../models/Article.js');
 
 router.get('/', function (req, res) {
@@ -13,11 +13,11 @@ router.get('/', function (req, res) {
 });
 
 router.get('/scrape', function (req, res) {
-  request('http://www.theverge.com', function (error, response, html) {
+  request('http://www.kotaku.com', function (error, response, html) {
     var $ = cheerio.load(html);
     var titlesArray = [];
 
-    $('.c-entry-box--compact__title').each(function (i, element) {
+    $('h4').each(function (i, element) {
       var result = {};
 
       result.title = $(this).children('a').text();
@@ -41,10 +41,10 @@ router.get('/scrape', function (req, res) {
             }
           });
         } else {
-          console.log('Article already exists.');
+          console.log('Article Already Exists');
         }
       } else {
-        console.log('Not saved to DB, missing data');
+        console.log('Missing Data');
       }
     });
     res.redirect('/');
@@ -125,7 +125,7 @@ router.post('/comment/:id', function (req, res) {
     body: content
   };
 
-  var newComment = new Comment(commentObj);
+  var newComment = new Note(commentObj);
 
   newComment.save(function (err, doc) {
     if (err) {
