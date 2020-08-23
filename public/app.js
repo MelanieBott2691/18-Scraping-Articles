@@ -1,25 +1,12 @@
-// Grab the articles as a json
-$.getJSON('/articles', function (data) {
-  // For each one
-  for (var i = 0; i < data.length; i++) {
-    // Display the apropos information on the page
-    $('#articles').append(
-      "<p data-id='" +
-        data[i]._id +
-        "'>" +
-        data[i].title +
-        '<br />' +
-        data[i].link +
-        '</p>'
-    );
-  }
-});
-
 // Whenever someone clicks a p tag
-$(document).on('click', 'p', function () {
+$(document).on('click', '.comment-btn', function () {
+  // modal for commenting
+  $('.modal').modal();
+  $('.modal').modal('open');
   // Empty the notes from the note section
-  $('#notes').empty();
-  // Save the id from the p tag
+  $('.modal-content').empty();
+  $('.modal-footer').empty();
+
   var thisId = $(this).attr('data-id');
 
   // Now make an ajax call for the Article
@@ -30,52 +17,86 @@ $(document).on('click', 'p', function () {
     // With that done, add the note information to the page
     .then(function (data) {
       console.log(data);
-      // The title of the article
-      $('#notes').append('<h2>' + data.title + '</h2>');
-      // An input to enter a new title
-      $('#notes').append("<input id='titleinput' name='title' >");
-      // A textarea to add a new note body
-      $('#notes').append("<textarea id='bodyinput' name='body'></textarea>");
-      // A button to submit a new note, with the id of the article saved to it
-      $('#notes').append(
-        "<button data-id='" + data._id + "' id='savenote'>Save Note</button>"
-      );
-
-      // If there's a note in the article
-      if (data.note) {
-        // Place the title of the note in the title input
-        $('#titleinput').val(data.note.title);
-        // Place the body of the note in the body textarea
-        $('#bodyinput').val(data.note.body);
+      var title = data.title;
+      for (i = 0; i < data.comment.length; i++) {
+        var id = data.comment[i];
+        $.ajax({
+          method: 'GET',
+          url: '/comments' + id
+        }).then(function (data) {
+          console.log(data);
+          $('.modal-content').prepend(
+            '<tr><td>' +
+              data.body +
+              "</td><td><button class='btn btn-medium delete-comment' data-id='" +
+              data._id +
+              "'>Delete</button></td></tr>"
+          );
+          console.log(data.body);
+        });
       }
+      console.log(data);
+      $('.modal-content').append('<h4>' + title + '</h4>');
+      $('.modal-content').append('<p>New Comment</p>');
+      $('.modal-content').append(
+        "<textarea id='bodyinput' name='body'></textarea>"
+      );
+      $('.modal-footer').append(
+        "<button class='btn btn-medium' data-id='" +
+          data._id +
+          "' id='save-comment'>Post</button>"
+      );
     });
 });
 
-// When you click the savenote button
-$(document).on('click', '#savenote', function () {
-  // Grab the id associated with the article from the submit button
-  var thisId = $(this).attr('data-id');
-
+// When you click the save button
+$(document).on('click', '#save-comment', function () {
+  var id = $(this).attr('data-id');
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: 'POST',
-    url: '/articles/' + thisId,
+    url: '/articles/' + id,
     data: {
-      // Value taken from title input
-      title: $('#titleinput').val(),
-      // Value taken from note textarea
       body: $('#bodyinput').val()
     }
-  })
-    // With that done
-    .then(function (data) {
-      // Log the response
-      console.log(data);
-      // Empty the notes section
-      $('#notes').empty();
-    });
-
-  // Also, remove the values entered in the input and textarea for note entry
-  $('#titleinput').val('');
+  }).then(function (data) {});
   $('#bodyinput').val('');
+  $('.modal').modal('close');
+});
+
+$('.save-article-btn').on('click', function (id) {
+  console.log($(this).attr('data-id'));
+  id = $(this).attr('data-id');
+  console.log(id);
+  $.ajax({
+    url: 'saved/' + id,
+    type: 'PUT'
+  });
+  location.reload();
+});
+
+// When you click the delete button
+$(document).on('click', '.delete-comment', function (thisId) {
+  console.log('all good!');
+  console.log($(this).attr('data-id'));
+  // Grab the id associated with the article from the submit button
+  thisId = $(this).attr('data-id');
+  console.log(thisId);
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    url: 'deletecomment/' + thisId,
+    type: 'DELETE'
+  }).then(function (data) {});
+  $('.modal').modal('close');
+});
+
+$('.delete-article-btn').on('click', function (id) {
+  console.log($(this).attr('data-id'));
+  id = $(this).attr('data-id');
+  console.log(id);
+  $.ajax({
+    url: 'delete/' + id,
+    type: 'DELETE'
+  });
+  location.reload();
 });

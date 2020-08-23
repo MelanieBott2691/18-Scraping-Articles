@@ -1,122 +1,125 @@
-html {
-  background-color: white; /* For browsers that do not support gradients */
-  background-image: linear-gradient(to bottom left, #702135, #daac16); /* Standard syntax (must be last) */
-  margin-left: 4px;
-  margin-right: 4px;
-}
 body {
-    background-size: 600px;
-    font-family: "Oswald", sans-serif;
-    font-size: 14px;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
+  background: black;
+}
 
-  .jumbotron {
-    background-color: purple;
+html {
+  font-family: 'Orbitron', sans-serif;;
+}
 
-  }
-  main {
-    flex: 1 0 auto;
-  }
- 
-  #savenote {
-    background-color: #702135;
-    border-radius: 6px;
-    text-shadow: 1px 1px rgb(80, 47, 2);
-    color: white;
-  }
-  
-  .navbar-header {
-    background-color: #daac16;
-    text-shadow: 1px 1px #000;
-    height: 2.5rem;
-    position: absolute;
-    width: 100%;
-    top: 0
-  }
-  .navbar-brand {
-    margin-left: 30px;
-    font-size: 20px;
-  }
-  h2 {
-   font-size: 22px;
-   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  }
-  h3 {
-    border-radius:15px 50px;
-    height: 100px;
-    padding: 20px;
-    text-shadow: 1px 1px rgb(75, 68, 68);
+a {
+  color: white
+}
 
-  }
-  h4 {
-    color: purple;
-  }
-  h5 {
-    color: white;
-    text-shadow: 2px 2px #000;
-  }
-  .z-depth-3 {
-    box-shadow: 0 6px 10px 0 rgba(10, 8, 3, 0.29), 0 1px 18px 0 rgba(22, 5, 5, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3)
-  }
-  .card-panel {
-    border-radius: 6px;
-    box-shadow: 0 6px 10px 0 rgba(10, 8, 3, 0.29), 0 1px 18px 0 rgba(22, 5, 5, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.3)
-  }
-   /* body { background-color: #F2F6D0 } */
-   #wrapper {
-    width: 960px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 5%;
-  }
-  #articles {
-    display: inline-block;
-    overflow: auto;
-    width: 60%;
-    height: 600px;
-    font-size: 24px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+a:hover {
+  text-decoration: underline;
+}
 
-  }
-  #notes {
-    float: right;
-    width: 20%;
-    height: 10%;
-    border-radius: 4px;
-  }
-  textarea,
-  input[type="text"]:focus + label {
-    width: 100%; 
-    background-color: #f1f1ed;
-    border-radius: 5px;
-    color: #635f60;
-  }
-  input {
-    height: 36px;
-    font-size: 24px;
-  }
-  textarea {
-    height: 200px;
-    font-size: 18px;
-  }
-  .input-field input[type="text"]:focus + label {
-    color: #635f60;
-  }
-  .textarea, input[type="text"]:focus {
-    border-bottom: 1px solid #635f60;
-    box-shadow: 0 1px 0 0 #000;
-  }
-  .textarea, input .prefix.active {
-    color: #635f60;
-  }
-  .footer {
-    background-color: #daac16;
-    text-shadow: .5px .5px #000;
-    position: absolute;
-    bottom: 0;
-    height: 2.5rem;
-    width: 100%;
-  }
+.modal-content {
+  background-image: URL("./../img/Black-Gradient-Background.jpg");
+  color: white
+}
+
+.modal {
+  margin-top: 65px;
+  background: rgb(65, 224, 73);
+}
+
+textarea {
+  min-height: 80px;
+  background: white;
+}
+
+.container {
+  min-height: 89.75vh;
+}
+
+.scrape-page-bg {
+  background: black;
+  background-image: URL("./../img/background2.gif");
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: repeat;
+  background-size: 145%;
+}
+
+.saved-page-bg {
+  background: black;
+  background-image: URL("./../img/background.gif");
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: 75%;
+}
+
+.nav-wrapper {
+  background-image: URL("./../img/Black-Gradient-Background.jpg");
+  background-position: center center;
+}
+
+.scrape-page-header, .scrape-page-header2, .scrape-page-header3 {
+  padding-top: 5%;
+  font-size: 46px;
+  font-weight: bolder;
+  font-family: 'Press Start 2P', cursive;
+  text-shadow: 5px 5px rgb(18,82,169);
+}
+
+.scrape-page-header2 {
+  padding-bottom: 5%;
+}
+
+.scrape-page-header3 {
+  padding-bottom: 5%; 
+  font-size: 36px;
+}
+
+.nav-links {
+  padding: 10px 15px;
+  margin: 0px 10px;
+  border-radius: 5px;
+  font-size: 20px;
+}
+
+.nav-links:hover {
+  padding-left: 15px;
+  padding-right: 15px;
+  font-size: 20px;
+  background: rgb(4, 85, 8);
+}
+
+.card-panel-top, .btn {
+  background: rgb(4, 85, 8);
+  font-weight: bolder;
+}
+
+.card-panel-top {
+  border-radius: 10px 10px 0px 0px;
+}
+
+.card-panel-bottom {
+  border-radius: 0px 0px 10px 10px;
+  background: rgb(65, 224, 73);
+  margin-bottom: 0px;
+}
+
+.card {
+  border-radius: 15px 15px 15px 15px;
+  margin-bottom: 0px;
+} 
+
+.card-content {
+  font-size: 19px;
+}
+
+.save-article-btn, .comment-btn, .delete-article-btn {
+  margin-top: 37px;
+}
+
+.comment-btn {
+  margin-right: 8px;
+}
+
+.banners {
+  min-width: 100%;
+  padding-bottom: 20px;
+}
