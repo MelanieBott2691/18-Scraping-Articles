@@ -3,17 +3,23 @@ body {
 }
 
 html {
-  font-family: 'Orbitron', sans-serif;;
+  font-family: 'Orbitron', sans-serif;
+  background-color: pink;
 }
 
-a {
+/* a {
   color: white
+} */
+.jumbotron {
+  background-color: tomato;
 }
-
 a:hover {
   text-decoration: underline;
 }
-
+a {
+  color: tomato;
+  text-shadow: 1px 1px black;
+}
 .modal-content {
   background-image: URL("./../img/Black-Gradient-Background.jpg");
   color: white

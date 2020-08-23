@@ -5,54 +5,30 @@
   <title>Scraping Articles</title>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-  <link rel="stylesheet" href="../../public/assets/css/style.css" type="text/css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../../public/css/style.css">
 </head>
-    
-      <div class="jumbotron container-fluid" id="jumbotron">
-<nav class="navbar navbar-default navbar-fixed-top" id="navbar">
-    <div class="container-fluid">
-        <div class="navbar-header">
-           <a class="brand-logo center hide-on-med-and-down" href="https://kotaku.com/">Scrapper Gaming News</a>
-<ul class="right">
-                <a class="waves-effect waves-light btn" href="/scrape">Scrape For New Articles</a>
-                <a class="waves-effect waves-light btn" href="/clear">Clear Articles</a>
-                <a href="/saved">Saved Articles</a>
-            </ul>        
-            </div>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">Scraper Gaming News</a>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/saved"><button type="button" class="btn btn-primary navbar-btn">Saved Articles</button></a>
+        </li>
+        <li>
+          <button type="button" class="btn btn-primary navbar-btn" id="scrape-btn">Scrape New Articles</button>
+        </li>
+      </ul>
     </div>
-</nav>
-</div>
-    <body>
-        {{{ body }}}
-    </body>
-<div id="modal1" class="modal modal-fixed-footer">
-  <div class="modal-content">
+  </nav>
+  <main class="main-body">
+    {{{ body }}}
+  </main>
 
-  </div>
-  <div class="modal-footer">
-    <!-- // Footer  -->
-   <footer class="footer">
-    <div class="footer-copyright">
-      <div class="container">
-        All articles belong to G/O Media Inc. © 2020
-        <a
-          class="white-text text-lighten-4 right"
-          href="https://kotaku.com/"
-          target="_blank"
-          >Kotaku</a
-        >
-      </div>
-    </div>
-  </footer>
-
-  </div>
-</div>
-  <script src="app.js"></script>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script src="script/index.js"></script>
+</body>
 
 </html>
