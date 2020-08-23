@@ -29,7 +29,8 @@ app.set('view engine', 'handlebars');
 // });
 // // require('./routes/route');
 
-var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoscraper';
+var MONGODB_URI =
+  process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlines';
 // mongodb+srv://user1:<password>@mongoscraper.cfphn.mongodb.net/<dbname>?retryWrites=true&w=majority
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // // mongoose.connect('mongodb://localhost/unit18Populater', {

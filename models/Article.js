@@ -9,8 +9,8 @@ var ArticleSchema = new Schema({
   // `title` is required and of type String
   title: {
     type: String,
-    unique: true,
-    required: true
+    unique: true
+    // required: true
   },
   summary: {
     type: String,
@@ -48,4 +48,31 @@ module.exports = Article;
 //   link:
 //     'https://kotaku.com/new-batman-game-is-called-gotham-knights-out-next-year-1844813454',
 //   note: ''
+// });
+
+// db.createCollection('articles', {
+//   validator: {
+//     $jsonSchema: {
+//       bsonType: 'object',
+//       required: ['title', 'summary', 'link', 'image'],
+//       properties: {
+//         title: {
+//           bsonType: 'string',
+//           description: 'must be a string and is required'
+//         },
+//         summary: {
+//           bsonType: 'string',
+//           description: 'must be a string and is required'
+//         },
+//         link: {
+//           bsonType: 'string',
+//           description: 'must be a string and is required'
+//         },
+//         image: {
+//           bsonType: 'string',
+//           description: 'if the field exists'
+//         }
+//       }
+//     }
+//   }
 // });
